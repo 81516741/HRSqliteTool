@@ -7,6 +7,8 @@
 //
 
 #import "ViewController.h"
+#import "HRSqliteTool.h"
+#import "TestModel.h"
 
 @interface ViewController ()
 
@@ -20,10 +22,17 @@
 }
 
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+{
+    for (int i = 0; i < 5; i++) {
+        TestModel * model = [TestModel new];
+        model.age = 13;
+        model.name = @"fd";
+        [HRSqliteTool hr_insert:model];
+        
+    }
 
+    NSArray * aaa = [HRSqliteTool hr_query:[TestModel class] condition:nil];
+}
 
 @end
